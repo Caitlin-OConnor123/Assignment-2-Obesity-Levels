@@ -4,7 +4,7 @@ library(readxl)
 library(randomForest)
 
 
-Obesity_Levels <- read_excel("~/PROJECT/Obesity Levels.xlsx")
+Obesity_Levels = read_excel("~/PROJECT/Obesity Levels.xlsx")
 View(Obesity_Levels)
 
 Obesity_Levels$is_obese = ifelse(grepl("Obesity", Obesity_Levels$NObeyesdad),1,0)
@@ -34,5 +34,6 @@ print(Random_Forest_confusion_matrix)
 
 Random_Forest_accuracy = sum(diag(Random_Forest_confusion_matrix))/sum(Random_Forest_confusion_matrix)
 print(Random_Forest_accuracy)
+
 
 
