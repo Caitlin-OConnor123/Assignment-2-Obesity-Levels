@@ -3,7 +3,7 @@ install.packages("caTools")
 library(readxl)
 library(caTools)
 
-Obesity_Levels <- read_excel("~/PROJECT/Obesity Levels.xlsx")
+Obesity_Levels = read_excel("~/PROJECT/Obesity Levels.xlsx")
 View(Obesity_Levels)
 
 Obesity_Levels$is_obese = ifelse(grepl("Obesity", Obesity_Levels$NObeyesdad),1,0)
@@ -37,4 +37,5 @@ print(Logistic_confusion_matrix)
 
 Logistic_accuracy = sum(diag(Logistic_confusion_matrix))/sum(Logistic_confusion_matrix)
 print(Logistic_accuracy)
+
 
