@@ -5,7 +5,7 @@ library(readxl)
 library(rpart)
 library(rpart.plot)
 
-Obesity_Levels <- read_excel("~/PROJECT/Obesity Levels.xlsx")
+Obesity_Levels = read_excel("~/PROJECT/Obesity Levels.xlsx")
 View(Obesity_Levels)
 
 Obesity_Levels$is_obese = ifelse(grepl("Obesity", Obesity_Levels$NObeyesdad),1,0)
@@ -36,4 +36,5 @@ print(Decision_Tree_confusion_matrix)
 
 Decision_Tree_accuracy = sum(diag(Decision_Tree_confusion_matrix))/sum(Decision_Tree_confusion_matrix)
 print(Decision_Tree_accuracy)
+
 
