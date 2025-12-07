@@ -140,9 +140,6 @@ NN_Model = neuralnet(is_obese ~.,
 plot(NN_Model, rep = "best")
 
 # To make the plot clearer:
-
-unlink("C:/Users/User/AppData/Local/R/win-library/4.3/00LOCK-ggplot2", recursive = TRUE)
-
 install.packages("ggplot2")
 library(ggplot2)
 
@@ -168,5 +165,6 @@ NN_confusion_matrix = table(Testing_NN$is_obese, NN_prediction)
 NN_accuracy = sum(diag(NN_confusion_matrix))/sum(NN_confusion_matrix)
 
 print(NN_accuracy)
+
 
 
