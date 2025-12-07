@@ -30,9 +30,9 @@ testing_set = subset(Obesity_Levels, split_data = FALSE)
 print(training_set)  
 print(testing_set)  
 
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # LOGISTIC REGRESSION - GLM
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Logistic_GLM = glm(formula = is_obese ~ ., data = training_set, family = binomial)
 summary(Logistic_GLM)
 
@@ -56,9 +56,9 @@ print(Logistic_confusion_matrix)
 Logistic_accuracy = sum(diag(Logistic_confusion_matrix))/sum(Logistic_confusion_matrix)
 print(Logistic_accuracy)
 
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # DECISION TREE
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Make the tree small using complexity parameter (cp)#
 Decision_Tree = rpart(is_obese ~ ., data = training_set, method = "class", control = rpart.control(cp = 0.01))
@@ -78,9 +78,9 @@ print(Decision_Tree_accuracy)
 print(Decision_Tree$variable.importance)
 rpart.rules(Decision_Tree)
 
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # RANDOM FOREST
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Optimise the random forest by tuning it
 Random_forest_tuned = tuneRF(x = training_set[, -which(names(training_set) == "is_obese")], 
@@ -108,9 +108,9 @@ print(Random_Forest_confusion_matrix)
 Random_Forest_accuracy = sum(diag(Random_Forest_confusion_matrix))/sum(Random_Forest_confusion_matrix)
 print(Random_Forest_accuracy)
 
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # DEEP LEARNING - NEURAL NETWORK
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Obesity_Levels$is_obese = as.numeric(as.factor(Obesity_Levels$is_obese))-1
 Obesity_Levels$is_obese = ifelse(Obesity_Levels$is_obese == 1, 1, 0)
@@ -168,4 +168,5 @@ NN_confusion_matrix = table(Testing_NN$is_obese, NN_prediction)
 NN_accuracy = sum(diag(NN_confusion_matrix))/sum(NN_confusion_matrix)
 
 print(NN_accuracy)
+
 
