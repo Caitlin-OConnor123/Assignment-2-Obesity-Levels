@@ -83,19 +83,9 @@ rpart.rules(Decision_Tree)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Optimise the random forest by tuning it
-Random_forest_tuned = tuneRF(x = training_set[, -which(names(training_set) == "is_obese")], 
-                       y = training_set$is_obese,
-                       ntreeTry = 500,
-                       stepFactor = 1.5,
-                       improve = 0.01,
-                       trace = TRUE,
-                       plot = TRUE,
-                       doBest = TRUE)
-Random_forest = randomForest(is_obese ~.,
-                             data = training_set,
-                             ntree = 500,
-                             mtry = 4,
-                             importance = TRUE)
+Random_forest_tuned = tuneRF(x = training_set[, -which(names(training_set) == "is_obese")], y = training_set$is_obese, ntreeTry = 500, stepFactor = 1.5, 
+                             improve = 0.01, trace = TRUE, plot = TRUE, doBest = TRUE)
+Random_forest = randomForest(is_obese ~., data = training_set, ntree = 500, mtry = 4, importance = TRUE)
 
 print(Random_forest)
 varImpPlot(Random_forest)
@@ -131,11 +121,7 @@ NN_Split = sample.split(NN$is_obese, SplitRatio = 0.70)
 Training_NN = subset(NN, NN_Split == TRUE)
 Testing_NN = subset(NN, NN_Split == FALSE)
 
-NN_Model = neuralnet(is_obese ~.,
-                     data = Training_NN,
-                     hidden = c(5,3),
-                     linear.output = FALSE,
-                     stepmax = 1e5)
+NN_Model = neuralnet(is_obese ~., data = Training_NN, hidden = c(5,3), linear.output = FALSE, stepmax = 1e5)
 plot(NN_Model, rep = "best")
 
 # To make the plot clearer:
@@ -146,11 +132,7 @@ install.packages("NeuralNetTools")
 library(NeuralNetTools)
 
 
-plotnet(NN_Model, alpha = 0.6,
-        circle_cex = 3,
-        cex_val = 0.6,
-        pos_col = "red",
-        neg_col = "blue")
+plotnet(NN_Model, alpha = 0.6, circle_cex = 3, cex_val = 0.6, pos_col = "red", neg_col = "blue")
 
 olden(NN_Model) + coord_flip() + ggtitle("Variable Impotance in Predicting Obesity")
 
@@ -164,6 +146,7 @@ NN_confusion_matrix = table(Testing_NN$is_obese, NN_prediction)
 NN_accuracy = sum(diag(NN_confusion_matrix))/sum(NN_confusion_matrix)
 
 print(NN_accuracy)
+
 
 
 
