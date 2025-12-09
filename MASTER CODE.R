@@ -135,8 +135,7 @@ NN_Model = neuralnet(is_obese ~.,
                      data = Training_NN,
                      hidden = c(5,3),
                      linear.output = FALSE,
-                     stepmax = 1e5,
-                     threshold = 0.5)
+                     stepmax = 1e5)
 plot(NN_Model, rep = "best")
 
 # To make the plot clearer:
@@ -165,6 +164,7 @@ NN_confusion_matrix = table(Testing_NN$is_obese, NN_prediction)
 NN_accuracy = sum(diag(NN_confusion_matrix))/sum(NN_confusion_matrix)
 
 print(NN_accuracy)
+
 
 
 
