@@ -1,2 +1,3 @@
 # Assignment-2-Obesity-Levels
-Assignment 2, Caitlin O'Connor 23023933
+Individual Project
+Caitlin O'Connor 23023933
